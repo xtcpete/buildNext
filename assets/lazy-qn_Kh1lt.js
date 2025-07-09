@@ -1,0 +1,1 @@
+import{p as n,K as r,D as l,e as u}from"./index-BaFjBnCt.js";const c=n({eager:Boolean},"lazy");function i(a,o){const e=r(!1),s=l(()=>e.value||a.eager||o.value);u(o,()=>e.value=!0);function t(){a.eager||(e.value=!1)}return{isBooted:e,hasContent:s,onAfterLeave:t}}export{c as m,i as u};
