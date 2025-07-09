@@ -10,7 +10,7 @@
           class="mr-4 pa-2 d-flex align-center justify-center"
           style="min-width: auto; height: 60px;"
         >
-          <v-img src="/logo.png" width="80" contain></v-img>
+          <v-img :src="getAssetPath('/logo.png')" width="80" contain></v-img>
         </v-btn>
         
         <v-text-field
@@ -105,6 +105,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import Footer from '@/components/Footer.vue';
+import { getAssetPath } from '@/utils/assets.js';
 
 const router = useRouter();
 const route = useRoute();
@@ -127,7 +128,7 @@ const contentData = {
       {
         title: '现代商业综合体',
         description: '大型城市综合体建筑设计',
-        image: '/gallary1.jpg',
+        image: getAssetPath("/gallary1.jpg"),
         cols: 6,
         md: 6,
         height: 300
@@ -135,7 +136,7 @@ const contentData = {
       {
         title: '创新建筑设计',
         description: '独特的螺旋式建筑造型',
-        image: '/gallary2.jpg',
+        image: getAssetPath("/gallary2.jpg"),
         cols: 6,
         md: 6,
         height: 300
@@ -143,7 +144,7 @@ const contentData = {
       {
         title: '城市规划项目',
         description: '大型城市开发规划设计',
-        image: '/gallary3.jpg',
+        image: getAssetPath("/gallary3.jpg"),
         cols: 8,
         md: 8,
         height: 250
@@ -151,7 +152,7 @@ const contentData = {
       {
         title: '高端住宅项目',
         description: '豪华住宅建筑群设计',
-        image: '/gallary4.jpg',
+        image: getAssetPath("/gallary4.jpg"),
         cols: 4,
         md: 4,
         height: 250
@@ -166,7 +167,7 @@ const contentData = {
       {
         title: '高品质建材展示',
         description: '优质建筑材料产品',
-        image: '/gallary1.jpg',
+        image: getAssetPath("/gallary1.jpg"),
         cols: 6,
         md: 6,
         height: 250
@@ -174,7 +175,7 @@ const contentData = {
       {
         title: '智能设备系统',
         description: '现代化智能建筑设备',
-        image: '/gallary2.jpg',
+        image: getAssetPath("/gallary2.jpg"),
         cols: 6,
         md: 6,
         height: 250
@@ -189,7 +190,7 @@ const contentData = {
       {
         title: '大型建筑施工',
         description: '复杂建筑项目施工',
-        image: '/gallary3.jpg',
+        image: getAssetPath("/gallary3.jpg"),
         cols: 8,
         md: 8,
         height: 300
@@ -197,7 +198,7 @@ const contentData = {
       {
         title: '精装修工程',
         description: '高端装修施工项目',
-        image: '/gallary5.jpg',
+        image: getAssetPath("/gallary5.jpg"),
         cols: 4,
         md: 4,
         height: 300
@@ -212,7 +213,7 @@ const contentData = {
       {
         title: '专家咨询服务',
         description: '顶级专家团队支持',
-        image: '/gallary4.jpg',
+        image: getAssetPath("/gallary4.jpg"),
         cols: 6,
         md: 6,
         height: 250
@@ -220,7 +221,7 @@ const contentData = {
       {
         title: '技术培训',
         description: '专业技术培训服务',
-        image: '/gallary5.jpg',
+        image: getAssetPath("/gallary5.jpg"),
         cols: 6,
         md: 6,
         height: 250
@@ -235,7 +236,7 @@ const contentData = {
       {
         title: '项目需求发布',
         description: '便捷的需求发布平台',
-        image: '/gallary1.jpg',
+        image: getAssetPath("/gallary1.jpg"),
         cols: 6,
         md: 6,
         height: 250
@@ -243,7 +244,7 @@ const contentData = {
       {
         title: '智能匹配系统',
         description: '精准匹配服务商',
-        image: '/gallary2.jpg',
+        image: getAssetPath("/gallary2.jpg"),
         cols: 6,
         md: 6,
         height: 250
@@ -362,3 +363,4 @@ watch(() => route.query.type, () => {
   border-radius: 12px;
 }
 </style>
+

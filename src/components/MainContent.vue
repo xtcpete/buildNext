@@ -39,15 +39,16 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import { getAssetPath } from '@/utils/assets.js';
 
 const router = useRouter();
 
 const images = [
-  '/gallary1.jpg',
-  '/gallary2.jpg',
-  '/gallary3.jpg',
-  '/gallary4.jpg',
-  '/gallary5.jpg',
+  getAssetPath(getAssetPath("/gallary1.jpg")),
+  getAssetPath(getAssetPath("/gallary2.jpg")),
+  getAssetPath(getAssetPath("/gallary3.jpg")),
+  getAssetPath(getAssetPath("/gallary4.jpg")),
+  getAssetPath(getAssetPath("/gallary5.jpg")),
 ];
 
 const buttons = [
@@ -86,3 +87,4 @@ const navigateToDetail = (buttonText) => {
   cursor: pointer;
 }
 </style>
+

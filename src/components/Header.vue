@@ -3,7 +3,7 @@
       <v-row align="center" justify="space-between" class="mx-4">
         <v-col cols="auto">
             <v-row align="center" justify="end">
-                <v-img src="/logo.png" alt="Logo" width="80" class="mr-4"></v-img>
+                <v-img :src="getAssetPath('/logo.png')" alt="Logo" width="80" class="mr-4"></v-img>
                 <v-btn text>关于我们</v-btn>
                 <v-btn text>企业团队</v-btn>
                 <v-btn text>新闻动态</v-btn>
@@ -29,8 +29,13 @@
 </template>
 
 <script>
+import { getAssetPath } from '@/utils/assets.js';
+
 export default {
   name: 'Header',
+  methods: {
+    getAssetPath
+  }
 };
 </script>
 

@@ -299,6 +299,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import Footer from '@/components/Footer.vue';
+import { getAssetPath } from '@/utils/assets.js';
 
 const router = useRouter();
 const route = useRoute();
@@ -327,9 +328,9 @@ const tagData = {
         type: '总包设计',
         location: '中国, 美洲, 非洲......112',
         projectCount: '235个',
-        mainImage: '/gallary1.jpg',
-        subImages: ['/gallary2.jpg', '/gallary3.jpg'],
-        avatar: '/logo.png',
+        mainImage: getAssetPath("/gallary1.jpg"),
+        subImages: [getAssetPath("/gallary2.jpg"), getAssetPath("/gallary3.jpg")],
+        avatar: getAssetPath("/logo.png"),
         serviceTypes: ['总包设计'],
         projectTypes: ['超高层办公楼', '博物馆', '体育馆'],
         languages: ['中文', '英语', '意大利语']
@@ -340,9 +341,9 @@ const tagData = {
         type: '总包设计',
         location: '中国, 美洲, 非洲......112',
         projectCount: '235个',
-        mainImage: '/gallary2.jpg',
-        subImages: ['/gallary3.jpg', '/gallary4.jpg'],
-        avatar: '/logo.png',
+        mainImage: getAssetPath("/gallary2.jpg"),
+        subImages: [getAssetPath("/gallary3.jpg"), getAssetPath("/gallary4.jpg")],
+        avatar: getAssetPath("/logo.png"),
         serviceTypes: ['总包设计'],
         projectTypes: ['超高层办公楼', '博物馆', '体育馆'],
         languages: ['中文', '英语', '意大利语']
@@ -353,9 +354,9 @@ const tagData = {
         type: '总包设计',
         location: '中国, 美洲, 非洲......112',
         projectCount: '235个',
-        mainImage: '/gallary3.jpg',
-        subImages: ['/gallary4.jpg', '/gallary5.jpg'],
-        avatar: '/logo.png',
+        mainImage: getAssetPath("/gallary3.jpg"),
+        subImages: [getAssetPath("/gallary4.jpg"), getAssetPath("/gallary5.jpg")],
+        avatar: getAssetPath("/logo.png"),
         serviceTypes: ['总包设计'],
         projectTypes: ['超高层办公楼', '博物馆', '体育馆'],
         languages: ['中文', '英语', '意大利语']
@@ -371,9 +372,9 @@ const tagData = {
         type: '方案设计',
         location: '中国, 北京, 上海......85',
         projectCount: '156个',
-        mainImage: '/gallary4.jpg',
-        subImages: ['/gallary5.jpg', '/gallary1.jpg'],
-        avatar: '/logo.png',
+        mainimage: getAssetPath("/gallary4.jpg"),
+        subImages: [getAssetPath("/gallary5.jpg"), getAssetPath("/gallary1.jpg")],
+        avatar: getAssetPath("/logo.png"),
         serviceTypes: ['方案设计'],
         projectTypes: ['住宅小区', '商业综合体', '文化建筑'],
         languages: ['中文', '英语']
@@ -503,3 +504,4 @@ watch(() => [route.query.category, route.query.tag], () => {
   color: #1976d2 !important;
 }
 </style>
+

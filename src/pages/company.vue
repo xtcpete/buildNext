@@ -224,6 +224,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import Footer from '@/components/Footer.vue';
+import { getAssetPath } from '@/utils/assets.js';
 
 const router = useRouter();
 const route = useRoute();
@@ -238,31 +239,31 @@ const companiesData = {
   'ABC 建筑研究院': {
     name: 'ABC 建筑研究院',
     subtitle: '总包建筑设计公司 | 中国广州 | 1-500人',
-    avatar: '/logo.png',
+    avatar: getAssetPath(getAssetPath("/logo.png")),
     description: '该公司总部位于中国广州，已有36余年经验，专业承接高端办公建筑设计，深化制造工厂，已在全国乃至全球拥有者达3500余个项目。该公司总部位于中国广州，已有36余年经验，专业承接高端办公建筑设计，深化制造工厂，已在全国乃至全球拥有者达3500余个项目。',
     companySize: '1-500人',
     serviceTypes: ['总包设计', '建筑设计', '规划设计'],
     projectTypes: ['商业建筑', '办公建筑', '住宅建筑', '工业建筑'],
     serviceLocations: ['广州', '深圳', '上海', '北京'],
     languages: ['中文', '英语', '意大利语'],
-    showcaseImage: '/gallary1.jpg',
+    showcaseImage: getAssetPath(getAssetPath("/gallary1.jpg")),
     showcaseTitle: '现代城市综合体项目',
     showcaseDescription: '大型城市开发项目，包含商业、办公、住宅等多功能综合体设计',
     projects: [
       {
         title: '商业综合体A',
         description: '现代化商业建筑设计',
-        image: '/gallary1.jpg'
+        image: getAssetPath(getAssetPath("/gallary1.jpg"))
       },
       {
         title: '办公大楼B',
         description: '高端办公空间设计',
-        image: '/gallary2.jpg'
+        image: getAssetPath(getAssetPath("/gallary2.jpg"))
       },
       {
         title: '住宅项目C',
         description: '绿色生态住宅设计',
-        image: '/gallary3.jpg'
+        image: getAssetPath(getAssetPath("/gallary3.jpg"))
       }
     ],
     teamDescription: '我们拥有一支经验丰富的专业设计团队，团队成员来自国内外知名设计院校，具备丰富的项目经验和创新能力。团队专注于现代建筑设计，致力于为客户提供高品质的设计服务。',
@@ -289,14 +290,14 @@ const loadContent = () => {
     companyData.value = {
       name: company || '公司名称',
       subtitle: '建筑设计公司',
-      avatar: '/logo.png',
+      avatar: getAssetPath(getAssetPath("/logo.png")),
       description: '这里是公司详细介绍。',
       companySize: '未知',
       serviceTypes: ['暂无信息'],
       projectTypes: ['暂无信息'],
       serviceLocations: ['暂无信息'],
       languages: ['暂无信息'],
-      showcaseImage: '/gallary1.jpg',
+      showcaseImage: getAssetPath(getAssetPath("/gallary1.jpg")),
       showcaseTitle: '项目展示',
       showcaseDescription: '项目描述',
       projects: [],
@@ -413,3 +414,4 @@ watch(() => [route.query.category, route.query.tag, route.query.company], () => 
   gap: 12px;
 }
 </style>
+

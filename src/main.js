@@ -21,6 +21,12 @@ import vuetify from './plugins/vuetify'
 
 const app = createApp(App)
 
+// Add global property for asset paths
+app.config.globalProperties.$getAssetPath = (path) => {
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  return baseUrl + path.replace(/^\//, '');
+}
+
 app.use(vuetify)
 
 registerPlugins(app)
