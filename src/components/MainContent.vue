@@ -3,7 +3,21 @@
     <v-row class="fill-height" style="margin: 16px 0;">
       <v-col cols="8" md="8" class="d-flex align-center fill-height">
         <v-col class="d-flex align-center fill-height">
-          <v-carousel cycle class="fill-height" :interval="5000" :show-arrows="false" :style="{ height: '500px', borderRadius: '16px', overflow: 'hidden' }">
+          <v-carousel
+            v-model="currentSlide"
+            cycle
+            class="fill-height"
+            :interval="5000"
+            :show-arrows="false"
+            :style="{ height: '500px', borderRadius: '16px', overflow: 'hidden' }"
+            @mousedown="onDragStart"
+            @mousemove="onDragMove"
+            @mouseup="onDragEnd"
+            @mouseleave="onDragEnd"
+            @touchstart="onTouchStart"
+            @touchmove="onTouchMove"
+            @touchend="onTouchEnd"
+          >
             <v-carousel-item v-for="(image, index) in images" :key="index">
               <v-img :src="image" alt="Main Image" cover :style="{ height: '100%', width: '100%' }"></v-img>
             </v-carousel-item>
@@ -37,8 +51,10 @@
   </v-container>
 </template>
 
+
 <script setup>
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 import { getAssetPath } from '@/utils/assets.js';
 
 const router = useRouter();
@@ -58,6 +74,59 @@ const buttons = [
   '专家人才库',
   '需求大厅',
 ];
+
+const currentSlide = ref(0);
+
+// 鼠标拖拽相关
+let dragStartX = null;
+let dragging = false;
+
+function onDragStart(e) {
+  dragging = true;
+  dragStartX = e.clientX;
+}
+
+function onDragMove(e) {
+  if (!dragging || dragStartX === null) return;
+  const deltaX = e.clientX - dragStartX;
+  if (Math.abs(deltaX) > 60) {
+    if (deltaX < 0 && currentSlide.value < images.length - 1) {
+      currentSlide.value++;
+    } else if (deltaX > 0 && currentSlide.value > 0) {
+      currentSlide.value--;
+    }
+    dragging = false;
+    dragStartX = null;
+  }
+}
+
+function onDragEnd() {
+  dragging = false;
+  dragStartX = null;
+}
+
+// 触摸拖拽（移动端）
+let touchStartX = null;
+function onTouchStart(e) {
+  if (e.touches && e.touches.length === 1) {
+    touchStartX = e.touches[0].clientX;
+  }
+}
+function onTouchMove(e) {
+  if (touchStartX === null) return;
+  const deltaX = e.touches[0].clientX - touchStartX;
+  if (Math.abs(deltaX) > 60) {
+    if (deltaX < 0 && currentSlide.value < images.length - 1) {
+      currentSlide.value++;
+    } else if (deltaX > 0 && currentSlide.value > 0) {
+      currentSlide.value--;
+    }
+    touchStartX = null;
+  }
+}
+function onTouchEnd() {
+  touchStartX = null;
+}
 
 const navigateToDetail = (buttonText) => {
   console.log('Navigating to category page with:', buttonText);
