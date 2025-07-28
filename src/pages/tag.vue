@@ -318,6 +318,15 @@ const priceRanges = ref(['1-10万', '10-50万', '50-100万', '100万以上']);
 const companies = ref([]);
 
 // Tag content data
+// 保留总体设计原始数据，其余自动生成
+const allCategories = [
+  '总体设计', '建筑方案设计', '建筑施工图设计', '结构设计', '机电设计', '智能化设计', '幕墙设计', '室内设计', '景观设计', '消防设计', '海绵设计', '泛光设计',
+  '建筑材料', '装饰材料', '机电设备', '智能设备', '安全设备', '环保材料',
+  '土建施工', '装修施工', '机电安装', '市政工程', '园林工程', '专业工程',
+  '建筑专家', '结构专家', '机电专家', '规划专家', '咨询顾问', '技术专家',
+  '设计需求', '施工需求', '材料需求', '技术需求', '咨询需求', '合作需求'
+];
+
 const tagData = {
   '总体设计': {
     title: '设计公司及独立设计师',
@@ -364,7 +373,7 @@ const tagData = {
     ]
   },
   '建筑方案设计': {
-    title: '设计公司及独立设计师',
+    title: '建筑方案设计',
     companies: [
       {
         name: 'XYZ 建筑工作室',
@@ -372,7 +381,7 @@ const tagData = {
         type: '方案设计',
         location: '中国, 北京, 上海......85',
         projectCount: '156个',
-        mainimage: getAssetPath("/gallary4.jpg"),
+        mainImage: getAssetPath("/gallary4.jpg"),
         subImages: [getAssetPath("/gallary5.jpg"), getAssetPath("/gallary1.jpg")],
         avatar: getAssetPath("/logo.png"),
         serviceTypes: ['方案设计'],
@@ -380,8 +389,62 @@ const tagData = {
         languages: ['中文', '英语']
       }
     ]
-  }
+  },
+  '建筑施工图设计': {
+    title: '建筑施工图设计',
+    companies: [
+      {
+        name: '施工图设计院',
+        subtitle: '施工图深化专家',
+        type: '施工图设计',
+        location: '中国, 上海',
+        projectCount: '98个',
+        mainImage: getAssetPath("/gallary2.jpg"),
+        subImages: [getAssetPath("/gallary3.jpg"), getAssetPath("/gallary4.jpg")],
+        avatar: getAssetPath("/logo.png"),
+        serviceTypes: ['施工图设计'],
+        projectTypes: ['住宅', '商业'],
+        languages: ['中文']
+      }
+    ]
+  },
+  // ...可继续为其他常用分类补充专属卡片...
 };
+// 其余未定义的分类自动生成
+allCategories.forEach((cat, idx) => {
+  if (tagData[cat]) return;
+  tagData[cat] = {
+    title: cat,
+    companies: [
+      {
+        name: `${cat}公司A`,
+        subtitle: `${cat}专业服务`,
+        type: cat,
+        location: '中国, 北京',
+        projectCount: `${100 + idx}个`,
+        mainImage: getAssetPath(`/gallary${(idx%5)+1}.jpg`),
+        subImages: [getAssetPath(`/gallary${((idx+1)%5)+1}.jpg`), getAssetPath(`/gallary${((idx+2)%5)+1}.jpg`)],
+        avatar: getAssetPath('/logo.png'),
+        serviceTypes: [cat],
+        projectTypes: [`${cat}项目1`, `${cat}项目2`],
+        languages: ['中文', '英语']
+      },
+      {
+        name: `${cat}公司B`,
+        subtitle: `${cat}专家`,
+        type: cat,
+        location: '中国, 上海',
+        projectCount: `${80 + idx}个`,
+        mainImage: getAssetPath(`/gallary${((idx+2)%5)+1}.jpg`),
+        subImages: [getAssetPath(`/gallary${((idx+3)%5)+1}.jpg`), getAssetPath(`/gallary${((idx+4)%5)+1}.jpg`)],
+        avatar: getAssetPath('/logo.png'),
+        serviceTypes: [cat],
+        projectTypes: [`${cat}项目3`, `${cat}项目4`],
+        languages: ['中文', '英语']
+      }
+    ]
+  };
+});
 
 const loadContent = () => {
   const category = route.query.category;

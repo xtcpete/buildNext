@@ -46,6 +46,54 @@
         
         <!-- Category Tags -->
         <v-row class="mb-6">
+                    <!-- Companies List for 建筑材料 -->
+          <v-row v-if="pageTitle === '建筑材料'">
+            <v-col
+              v-for="(company, index) in companies"
+              :key="index"
+              cols="12"
+              md="6"
+              lg="4"
+              class="mb-6"
+            >
+              <v-card
+                elevation="1"
+                class="company-card pa-6"
+                @click="navigateToCompany(company)"
+                style="cursor: pointer;"
+              >
+                <v-row>
+                  <!-- 主图 -->
+                  <v-col cols="12">
+                    <v-img
+                      :src="company.mainImage"
+                      height="180"
+                      cover
+                      class="rounded company-main-image mb-4"
+                    ></v-img>
+                  </v-col>
+                  <!-- 产品信息 -->
+                  <v-col cols="12">
+                    <div class="d-flex align-center mb-2">
+                      <h2 class="text-h6 font-weight-bold mr-3">{{ company.铝合金双开门 }}</h2>
+                      <v-chip size="small" color="blue" variant="outlined">{{ company.铝合金双开门 }}</v-chip>
+                    </div>
+                    <div class="text-body-2 text-grey mb-1">{{ company.铝合金双开门 }}</div>
+                    <div class="text-orange font-weight-bold mb-1">{{ company.铝合金双开门 }}</div>
+                    <div class="mb-1">
+                      <v-chip
+                        v-for="tag in company.projectTypes"
+                        :key="tag"
+                        size="small"
+                        class="mr-1 mb-1"
+                        color="grey-lighten-2"
+                      >{{ tag }}</v-chip>
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+          </v-row>
           <v-col cols="12">
             <v-chip-group v-model="selectedCategory" class="mb-4">
               <v-chip 
@@ -73,7 +121,7 @@
             <v-card 
               class="project-card" 
               elevation="2"
-              @click="viewProject(project)"
+              @click="handleProjectClick(project)"
               style="cursor: pointer;"
             >
               <v-img 
@@ -298,9 +346,78 @@ const navigateToTag = (tagName) => {
   });
 };
 
-const viewProject = (project) => {
-  console.log('Viewing project:', project.title);
-  // Add project detail navigation if needed
+
+// 跳转到各自的数据库页面
+const handleProjectClick = (project) => {
+  // 材料设备供应商下的卡片跳转到 tag 页面
+  if (pageTitle.value === '材料设备供应商') {
+    if (project.title === '高品质建材展示') {
+      router.push({
+        path: '/tag',
+        query: {
+          category: '材料设备供应商',
+          tag: '建筑材料'
+        }
+      });
+      return;
+    } else if (project.title === '智能设备系统') {
+      router.push({
+        path: '/tag',
+        query: {
+          category: '材料设备供应商',
+          tag: '智能设备'
+        }
+      });
+      return;
+    }
+    // 可继续扩展更多卡片跳转
+  }
+  // 设计公司及独立设计师下的卡片跳转到 tag 页面
+  if (pageTitle.value === '设计公司及独立设计师') {
+    router.push({
+      path: '/tag',
+      query: {
+        category: '设计公司及独立设计师',
+        tag: project.title
+      }
+    });
+    return;
+  }
+  // 施工单位供应商下的卡片跳转到 tag 页面
+  if (pageTitle.value === '施工单位供应商') {
+    router.push({
+      path: '/tag',
+      query: {
+        category: '施工单位供应商',
+        tag: project.title
+      }
+    });
+    return;
+  }
+  // 专家人才库下的卡片跳转到 tag 页面
+  if (pageTitle.value === '专家人才库') {
+    router.push({
+      path: '/tag',
+      query: {
+        category: '专家人才库',
+        tag: project.title
+      }
+    });
+    return;
+  }
+  // 需求大厅下的卡片跳转到 tag 页面
+  if (pageTitle.value === '需求大厅') {
+    router.push({
+      path: '/tag',
+      query: {
+        category: '需求大厅',
+        tag: project.title
+      }
+    });
+    return;
+  }
+  // 默认行为
+  console.log('No jump logic for this card:', project.title);
 };
 
 onMounted(() => {
