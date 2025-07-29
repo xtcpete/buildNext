@@ -327,6 +327,11 @@ const allCategories = [
   '设计需求', '施工需求', '材料需求', '技术需求', '咨询需求', '合作需求'
 ];
 
+const allProjects = [
+  '现代商业综合体', '创新建筑设计', '城市规划项目', '高端住宅项目', '高品质建材展示',
+  '智能设备系统', '大型建筑施工', '精装修工程', '专家咨询服务', '技术培训', 
+  '项目需求发布', '智能匹配系统'];
+
 const tagData = {
   '总体设计': {
     title: '设计公司及独立设计师',
@@ -412,6 +417,41 @@ const tagData = {
 };
 // 其余未定义的分类自动生成
 allCategories.forEach((cat, idx) => {
+  if (tagData[cat]) return;
+  tagData[cat] = {
+    title: cat,
+    companies: [
+      {
+        name: `${cat}公司A`,
+        subtitle: `${cat}专业服务`,
+        type: cat,
+        location: '中国, 北京',
+        projectCount: `${100 + idx}个`,
+        mainImage: getAssetPath(`/gallary${(idx%5)+1}.jpg`),
+        subImages: [getAssetPath(`/gallary${((idx+1)%5)+1}.jpg`), getAssetPath(`/gallary${((idx+2)%5)+1}.jpg`)],
+        avatar: getAssetPath('/logo.png'),
+        serviceTypes: [cat],
+        projectTypes: [`${cat}项目1`, `${cat}项目2`],
+        languages: ['中文', '英语']
+      },
+      {
+        name: `${cat}公司B`,
+        subtitle: `${cat}专家`,
+        type: cat,
+        location: '中国, 上海',
+        projectCount: `${80 + idx}个`,
+        mainImage: getAssetPath(`/gallary${((idx+2)%5)+1}.jpg`),
+        subImages: [getAssetPath(`/gallary${((idx+3)%5)+1}.jpg`), getAssetPath(`/gallary${((idx+4)%5)+1}.jpg`)],
+        avatar: getAssetPath('/logo.png'),
+        serviceTypes: [cat],
+        projectTypes: [`${cat}项目3`, `${cat}项目4`],
+        languages: ['中文', '英语']
+      }
+    ]
+  };
+});
+
+allProjects.forEach((cat, idx) => {
   if (tagData[cat]) return;
   tagData[cat] = {
     title: cat,
